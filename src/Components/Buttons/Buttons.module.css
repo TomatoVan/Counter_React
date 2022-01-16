@@ -1,0 +1,61 @@
+.Increment {
+    font-size: 60%;
+    position: relative;
+    top: 80px;
+    margin-right: 10px;
+    background-color: #5585b5;
+    border-radius: 4px;
+    color: white;
+}
+
+.Increment:disabled {
+    font-size: 60%;
+    position: relative;
+    top: 80px;
+    margin-right: 10px;
+    background-color: #5585b5;
+    border-radius: 4px;
+    color: white;
+    opacity: 0.6;
+}
+
+.Reset {
+    font-size: 60%;
+    position: relative;
+    top: 80px;
+    margin-right: 10px;
+    background-color: #f95959;
+    border-radius: 4px;
+    color: white;
+}
+
+.Reset:disabled {
+    font-size: 60%;
+    position: relative;
+    top: 80px;
+    margin-right: 10px;
+    background-color: #f95959;
+    border-radius: 4px;
+    color: white;
+    opacity: 0.6;
+}
+
+.Set {
+    font-size: 60%;
+    top: 80px;
+    margin-right: 10px;
+    background-color: #680747;
+    border-radius: 4px;
+    color: white;
+    margin-top: 50px;
+}
+
+.Set:disabled {
+    font-size: 60%;
+    top: 80px;
+    margin-right: 10px;
+    background-color: #680747;
+    border-radius: 4px;
+    color: white;
+    opacity: 0.6;
+}

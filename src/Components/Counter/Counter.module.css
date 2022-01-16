@@ -1,0 +1,16 @@
+.counter {
+    position: relative;
+    top: 40px;
+    color: forestgreen;
+}
+.counterMid {
+    position: relative;
+    top: 40px;
+    color: #f05d23;
+}
+
+.counterMax {
+    position: relative;
+    color: darkred;
+    top: 40px;
+}
