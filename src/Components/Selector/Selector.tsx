@@ -10,8 +10,6 @@ type PropsType = {
 
 export const Selector:React.FC<PropsType> = ({maxValue, startValue, maxValueHandler, startValueHandler}) => {
 
-
-
 	const maxValueCallback = (e:ChangeEvent<HTMLInputElement>) => {
 		maxValueHandler(Number(e.currentTarget.value))
 	}
@@ -22,18 +20,11 @@ export const Selector:React.FC<PropsType> = ({maxValue, startValue, maxValueHand
 
 	let maxValueClass
 	let startValueClass
+	let maxValueError = maxValue < 0 || maxValue === startValue || maxValue < startValue
+	let startValueError = startValue < 0 || startValue === maxValue || maxValue < startValue
 
-	if (maxValue < 0 || maxValue === startValue || maxValue < startValue) {
-		maxValueClass = s.error
-	} else {
-		maxValueClass = s.normal
-	}
-	if (startValue < 0 || startValue === maxValue || maxValue < startValue) {
-		startValueClass = s.error
-	} else {
-		startValueClass = s.normal
-	}
-
+	maxValueError ? maxValueClass = s.error : maxValueClass = s.normal
+	startValueError ? startValueClass = s.error : startValueClass = s.normal
 
 	return (
 		<div className={s.wrapper}>

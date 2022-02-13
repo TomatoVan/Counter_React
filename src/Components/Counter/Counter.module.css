@@ -1,15 +1,18 @@
 .counter {
+    text-align:center;
     position: relative;
     top: 40px;
     color: forestgreen;
 }
 .counterMid {
+    text-align: center;
     position: relative;
     top: 40px;
     color: #f05d23;
 }
 
 .counterMax {
+    text-align: center;
     position: relative;
     color: darkred;
     top: 40px;
