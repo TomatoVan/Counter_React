@@ -5,32 +5,35 @@ import {Counter} from "./Components/Counter/Counter";
 import {Buttons} from "./Components/Buttons/Buttons";
 import {Selector} from "./Components/Selector/Selector";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootState} from "./state/store";
-import {getMaxValueFromLocalStorage, getStartValueFromLocalStorage, setIncrement, setMaxValue, setReset, setSelect, setStartValue} from "./state/counterReducer";
+import {AppRootState} from "./bll/store";
+import {
+	getMaxValueFromLocalStorageTC,
+	getStartValueFromLocalStorageTC, setEstablishedIncrementTC,
+	setEstablishedResetTC,
+	setIncrement,
+	setMaxValue,
+	setReset,
+	setSelect,
+	setStartValue
+} from "./bll/counterReducer";
 
 function App() {
 
 	const dispatch = useDispatch()
+
 	let counterNumber = useSelector<AppRootState, number>(state => state.counter.counterNumber)
 	let startValue = useSelector<AppRootState, number>(state => state.counter.startValue)
 	let maxValue = useSelector<AppRootState, number>(state => state.counter.maxValue)
 	let establishedIncrement = useSelector<AppRootState, number>(state => state.counter.establishedIncrement)
 	let establishedReset = useSelector<AppRootState, number>(state => state.counter.establishedReset)
 
-	let setValues = establishedIncrement === maxValue && establishedReset === startValue
-	let errorValues = maxValue < 0 || startValue < 0 || maxValue === startValue || maxValue < startValue
-	let disableSetButton = setValues || errorValues
-	let disableIncrementBtn = counterNumber === establishedIncrement
-	let disableResetBtn = counterNumber === establishedReset
-
 	const increment = () => dispatch(setIncrement())
-
 	const reset = () => dispatch(setReset())
 
 	const select = () => {
 		dispatch(setSelect())
-		localStorage.setItem("maxValue", JSON.stringify(maxValue))
-		localStorage.setItem("startValue", JSON.stringify(startValue))
+		dispatch(setEstablishedResetTC(startValue))
+		dispatch(setEstablishedIncrementTC(maxValue))
 	}
 
 	const maxValueHandler = (value:number) => dispatch(setMaxValue(value))
@@ -38,9 +41,15 @@ function App() {
 	const startValueHandler = (value:number) => dispatch(setStartValue(value))
 
 	useEffect(() => {
-		dispatch(getMaxValueFromLocalStorage())
-		dispatch(getStartValueFromLocalStorage())
-	}, [])
+		dispatch(getStartValueFromLocalStorageTC())
+		dispatch(getMaxValueFromLocalStorageTC())
+	}, [dispatch])
+
+	let setValues = establishedIncrement === maxValue && establishedReset === startValue
+	let errorValues = maxValue < 0 || startValue < 0 || maxValue === startValue || maxValue < startValue
+	let disableSetButton = setValues || errorValues
+	let disableIncrementBtn = counterNumber === establishedIncrement
+	let disableResetBtn = counterNumber === establishedReset
 
 	return (
 		<div className={s.wrapper}>

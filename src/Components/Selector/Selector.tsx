@@ -29,11 +29,11 @@ export const Selector:React.FC<PropsType> = ({maxValue, startValue, maxValueHand
 	return (
 		<div className={s.wrapper}>
 			<div>
-				<text className={s.title}>maxValue</text>
+				<span className={s.title}>maxValue</span>
 				<input value={maxValue}  className={maxValueClass} onChange={maxValueCallback} name="maxValue" type="number" />
 			</div>
 			<div>
-				<text className={s.title}>startValue</text>
+				<span className={s.title}>startValue</span>
 				<input value={startValue} className={startValueClass} onChange={startValueCallback} name="startValue" type="number" />
 			</div>
 		</div>
