@@ -43,7 +43,7 @@ export const counterReducer = (state:stateType = initialType, action: GeneralTyp
 			case "SET-RESET":
 				return {...state, counterNumber: state.startValue}
 			case "SET-SELECT":
-				return {...state, counterNumber: state.startValue}
+				return {...state, counterNumber: state.startValue, establishedReset: state.startValue, establishedIncrement: state.maxValue}
 			case "SET-START-VALUE":
 				return {...state, startValue: action.payload.value}
 			case "SET-MAX-VALUE":
@@ -52,7 +52,7 @@ export const counterReducer = (state:stateType = initialType, action: GeneralTyp
 			case "SET-ESTABLISHED-RESET" :
 				return {...state, establishedReset: action.payload.startValue }
 			case "SET-ESTABLISHED-INCREMENT" :
-				return {...state, establishedReset: action.payload.maxValue }
+				return {...state, establishedIncrement: action.payload.maxValue }
 
 			case "GET-START-VALUE-FROM-LOCAL-STORAGE":
 				return {...state,startValue: action.payload.newValue}
@@ -79,7 +79,7 @@ export const getMaxValueFromLocalStorageAC = (newValue:number) => ({type:'GET-MA
 
 //THUNK
 
-export const setEstablishedResetTC = (startValue:number, ) => (dispatch: Dispatch) => {
+export const setEstablishedResetTC = (startValue:number) => (dispatch: Dispatch) => {
 	localStorage.setItem("startValue", JSON.stringify(startValue))
 	dispatch(setEstablishedResetAC(startValue))
 }
